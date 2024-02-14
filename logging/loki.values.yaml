@@ -1,0 +1,14 @@
+loki:
+  storage:
+    bucketNames:
+      chunks: chunks
+      ruler: ruler
+      admin: admin
+    type: azure
+    azure:
+      accountName: devlogging01
+      accountKey: AZURE_ACCOUNT_KEY
+gateway:
+  nginxConfig:
+    serverSnippet: |-
+      client_max_body_size 100M;

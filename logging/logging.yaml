@@ -1,0 +1,27 @@
+apiVersion: logging.banzaicloud.io/v1beta1
+kind: Logging
+metadata:
+  name: default-logging-simple
+spec:
+  fluentd:
+    workers: 4
+    rootDir: /buffers
+    resources:
+      limits:
+        cpu: 2000m
+        memory: 3000Mi
+      requests:
+        cpu: 1000m
+        memory: 2000Mi
+    bufferStorageVolume:
+      pvc:
+        spec:
+          accessModes:
+            - ReadWriteOnce
+          resources:
+            requests:
+              storage: 40Gi
+          storageClassName: default
+          volumeMode: Filesystem
+  fluentbit: {}
+  controlNamespace: logging

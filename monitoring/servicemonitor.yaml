@@ -1,0 +1,32 @@
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: core-feature-account-monitor
+  namespace: default
+  labels:
+    app: core-feature-account-monitor
+spec:
+  selector:
+    matchLabels:
+      app: core-feature-account
+  namespaceSelector:
+    any: true
+  endpoints:
+  - port: http
+    path: /actuator/prometheus
+---
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: core-feature-search
+  labels:
+    app: core-feature-search-monitor
+spec:
+  selector:
+    matchLabels:
+      app: core-feature-search
+  namespaceSelector:
+    any: true
+  endpoints:
+  - port: http
+    path: /actuator/prometheus

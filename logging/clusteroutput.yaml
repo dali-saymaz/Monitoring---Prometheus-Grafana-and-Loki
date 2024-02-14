@@ -1,0 +1,17 @@
+apiVersion: logging.banzaicloud.io/v1beta1
+kind: ClusterOutput
+metadata:
+ name: loki-output
+ namespace: logging
+spec:
+ loki:
+   url: http://loki-gateway
+   configure_kubernetes_labels: true
+   buffer:
+     chunk_limit_size: 8MB
+     flush_interval: 10s
+     flush_mode: interval
+     flush_thread_count: 4
+     retry_forever: false
+     retry_timeout: 12h
+   tenant: "1"
